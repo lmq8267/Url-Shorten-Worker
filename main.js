@@ -11,7 +11,7 @@ let buildValueItemFunc = buildValueTxt
 
 function shorturl() {
   if (document.querySelector("#longURL").value == "") {
-    alert("Url cannot be empty!")
+    alert("URL 不能为空！")
     return
   }
   
