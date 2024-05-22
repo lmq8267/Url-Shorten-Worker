@@ -141,14 +141,14 @@ async function handleRequest(request) {
     */
 
     if (req_password != password_value) {
-      return new Response(`{"status":500,"key": "", "error":"Error: Invalid password."}`, {
+      return new Response(`{"status":500,"key": "", "error":"错误: 无效的密码."}`, {
         headers: response_header,
       })
     }
 
     if (req_cmd == "add") {
       if ((config.system_type == "shorturl") && !await checkURL(req_url)) {
-        return new Response(`{"status":500, "url": "` + req_url + `", "error":"Error: Url illegal."}`, {
+        return new Response(`{"status":500, "url": "` + req_url + `", "error":"错误: URL的格式或内容不符合规范或不合法！"}`, {
           headers: response_header,
         })
       }
@@ -157,14 +157,14 @@ async function handleRequest(request) {
       if (config.custom_link && (req_key != "")) {
         // Refuse 'password" as Custom shortURL
         if (protect_keylist.includes(req_key)) {
-          return new Response(`{"status":500,"key": "` + req_key + `", "error":"Error: Key in protect_keylist."}`, {
+          return new Response(`{"status":500,"key": "` + req_key + `", "error":"错误：自定义短链不符合规范或者短链列表中存在错误！"}`, {
             headers: response_header,
           })
         }
 
         let is_exist = await is_url_exist(req_key)
         if ((!config.overwrite_kv) && (is_exist)) {
-          return new Response(`{"status":500,"key": "` + req_key + `", "error":"Error: Specific key existed."}`, {
+          return new Response(`{"status":500,"key": "` + req_key + `", "error":"错误：自定义短链已存在！"}`, {
             headers: response_header,
           })
         } else {
@@ -192,14 +192,14 @@ async function handleRequest(request) {
           headers: response_header,
         })
       } else {
-        return new Response(`{"status":500, "key": "", "error":"Error: Reach the KV write limitation."}`, {
+        return new Response(`{"status":500, "key": "", "error":"错误：达到了 KV 写入限制！"}`, {
           headers: response_header,
         })
       }
     } else if (req_cmd == "del") {
       // Refuse to delete 'password' entry
       if (protect_keylist.includes(req_key)) {
-        return new Response(`{"status":500, "key": "` + req_key + `", "error":"Error: Key in protect_keylist."}`, {
+        return new Response(`{"status":500, "key": "` + req_key + `", "error":"错误：在受保护关键键列表中！"}`, {
           headers: response_header,
         })
       }
@@ -217,7 +217,7 @@ async function handleRequest(request) {
     } else if (req_cmd == "qry") {
       // Refuse to query 'password'
       if (protect_keylist.includes(req_key)) {
-        return new Response(`{"status":500,"key": "` + req_key + `", "error":"Error: Key in protect_keylist."}`, {
+        return new Response(`{"status":500,"key": "` + req_key + `", "error":"错误：在受保护关键键列表中！"}`, {
           headers: response_header,
         })
       }
@@ -231,13 +231,13 @@ async function handleRequest(request) {
           headers: response_header,
         })
       } else {
-        return new Response(`{"status":500, "key": "` + req_key + `", "error":"Error: Key not exist."}`, {
+        return new Response(`{"status":500, "key": "` + req_key + `", "error":"错误：密钥不存在！"}`, {
           headers: response_header,
         })
       }
     } else if (req_cmd == "qryall") {
       if ( !config.load_kv) {
-        return new Response(`{"status":500, "error":"Error: Config.load_kv false."}`, {
+        return new Response(`{"status":500, "error":"错误：不允许读取KV数据！"}`, {
           headers: response_header,
         })
       }
@@ -269,7 +269,7 @@ async function handleRequest(request) {
           headers: response_header,
         })
       } else {
-        return new Response(`{"status":500, "error":"Error: Load keyList failed."}`, {
+        return new Response(`{"status":500, "error":"错误：读取KV数据失败！"}`, {
           headers: response_header,
         })
       }
