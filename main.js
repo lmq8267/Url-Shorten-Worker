@@ -204,7 +204,7 @@ function deleteShortUrl(delKeyPhrase) {
       // 加载localStorage
       loadUrlList()
 
-      document.getElementById("result").innerHTML = "Delete Successful"
+      document.getElementById("result").innerHTML = "删除成功"
     } else {
       document.getElementById("result").innerHTML = res.error;
     }
@@ -214,7 +214,7 @@ function deleteShortUrl(delKeyPhrase) {
     modal.show();
 
   }).catch(function (err) {
-    alert("Unknow error. Please retry!");
+    alert("未知错误，请重试！");
     console.log(err);
   })
 }
@@ -245,7 +245,7 @@ function queryVisitCount(qryKeyPhrase) {
     }
 
   }).catch(function (err) {
-    alert("Unknow error. Please retry!");
+    alert("未知错误，请重试！");
     console.log(err);
   })
 }
@@ -283,7 +283,7 @@ function query1KV() {
     }
 
   }).catch(function (err) {
-    alert("Unknow error. Please retry!");
+    alert("未知错误，请重试！");
     console.log(err);
   })
 }
@@ -319,7 +319,7 @@ function loadKV() {
       modal.show();
     }
   }).catch(function (err) {
-    alert("Unknow error. Please retry!");
+    alert("未知错误，请重试！");
     console.log(err);
   })
 }
