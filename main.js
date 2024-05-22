@@ -11,7 +11,7 @@ let buildValueItemFunc = buildValueTxt
 
 function shorturl() {
   if (document.querySelector("#longURL").value == "") {
-    alert("URL 不能为空！")
+    alert("URL(长网址) 不能为空！")
     return
   }
   
