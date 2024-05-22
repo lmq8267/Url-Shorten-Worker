@@ -20,7 +20,7 @@ function shorturl() {
   document.getElementById('keyPhrase').value = document.getElementById('keyPhrase').value.replace(/\s/g, "-");
 
   document.getElementById("addBtn").disabled = true;
-  document.getElementById("addBtn").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Please wait...';
+  document.getElementById("addBtn").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>请稍候，正在缩短18cm...';
   fetch(apiSrv, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -51,7 +51,7 @@ function shorturl() {
     modal.show();
 
   }).catch(function (err) {
-    alert("Unknow error. Please retry!");
+    alert("未知错误，请重试！");
     console.log(err);
     document.getElementById("addBtn").disabled = false;
     document.getElementById("addBtn").innerHTML = '缩短它';
